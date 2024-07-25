@@ -1,0 +1,29 @@
+@use "../../assets/styles/_variables" as *;
+
+.mood-selector {
+  display: flex;
+  flex: row;
+  width: 10rem;
+  flex-wrap: wrap;
+}
+
+.section__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  /* From https://css.glass */
+  background: rgba(215, 145, 99, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(215, 145, 99, 0.3);
+  padding: 5em;
+}
+
+.standout-body-text {
+  color: $font-highlight;
+  font-size: 2.4rem;
+  font-weight: bold;
+  font-style: italic;
+}

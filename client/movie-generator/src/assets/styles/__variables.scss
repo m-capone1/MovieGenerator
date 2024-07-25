@@ -1,6 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;1,9..40,100&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap');
+
 //colors
 $primary-text-color: #000000;
-$primary-background-color: #FFFFFF;
+$primary-background-color: #fffcfc;
 $secondary-text-color: #bf0000;
 $accent-color: #800000;
 $secondary-accent-color: #400000;
+
+//fonts 
+$bold: 700;
+$light: 200;
+$regular: 400;
+$font-highlight: #e65d76e2;
+$font-black: black;
+$header-font: 'DM Serif Display';
+$paragraph-font: 'DM Sans';
+$body-bold: 'Ultra';

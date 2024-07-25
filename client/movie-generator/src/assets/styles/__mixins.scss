@@ -1,0 +1,24 @@
+@use "./_fonts" as *;
+@use "./_variables" as *;
+
+
+@mixin font-type ($font-family, $weight,$line-height, $font-size, $color) {
+    font-family: $font-family;
+    font-weight: $weight;
+    line-height: $line-height;
+    font-size: $font-size;
+    color: $color;
+}
+
+
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}

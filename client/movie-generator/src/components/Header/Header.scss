@@ -1,5 +1,23 @@
-.header{
-    &__logo{
-        width: 4rem;
-    }
+@use "../../assets/styles/_variables" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 2.4rem;
+  background-color: $primary-background-color;
+
+  &__user {
+   display:flex;
+   flex-direction: column;
+   align-items: space-between;
+   gap: 0;
+
+    p {
+        font-style: italic;
+
+   }
+  }
+  &__logo {
+    height: 20rem;
+  }
 }

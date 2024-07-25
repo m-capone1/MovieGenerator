@@ -1,0 +1,23 @@
+@use "./_variables" as* ;
+
+
+
+@font-face {
+    font-family: 'DM Serif Display';
+    src: url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+    font-weight: $regular; 
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Telegraf';
+    src: url("../fonts/PPTelegraf-UltraBold.otf") format("truetype");
+    font-weight: $bold; 
+}
+
+@font-face {
+    font-family: 'Telegraf';
+    src: url("../Assets/Font/PPTelegraf--UltraLight.otf") format("truetype");
+    font-weight: $light; 
+}
