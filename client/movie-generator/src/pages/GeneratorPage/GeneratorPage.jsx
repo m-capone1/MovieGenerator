@@ -36,7 +36,7 @@ export default function GeneratorPage() {
     };
 
   return (
-    <section>
+    <section className='main'>
         <div>
             <h1>Generator Page</h1>
             <p>Selected mood: {mood}</p>

@@ -17,8 +17,8 @@ const __dirname = path.dirname(__filename);
 const dataPath = path.join(__dirname, 'data', 'data.json');
 
 // Directly set the OpenAI API key
-// const openaiApiKey = 'sk-proj-HrcapYN5ATdUGYv29sRUT3BlbkFJcBbrjOIGfrKGWb3xJdmn';
-// const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
+const openaiApiKey = 'sk-proj-HrcapYN5ATdUGYv29sRUT3BlbkFJcBbrjOIGfrKGWb3xJdmn';
+const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
 
 app.get('/generator/:id', async (req, res) => {
     const { id }= req.params;
@@ -39,29 +39,29 @@ app.get('/generator/:id', async (req, res) => {
 });
 
 // Example route using OpenAI
-// app.post('/generator/:id', async (req, res) => {
-//     const { prompt } = req.body;
+app.post('/generator/:id', async (req, res) => {
+    const { prompt } = req.body;
 
-//   try {
-//     const response = await axios.post(openaiApiUrl, {
-//       model: "gpt-3.5-turbo",
-//       messages: [{ role: 'user', content: prompt }],
-//       max_tokens: 250,
-//     }, {
-//       headers: {
-//         'Authorization': `Bearer ${openaiApiKey}`,
-//         'Content-Type': 'application/json',
-//       },
-//     });
+  try {
+    const response = await axios.post(openaiApiUrl, {
+      model: "gpt-3.5-turbo",
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 250,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${openaiApiKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
-//     console.log(response.data.choices[0].message.content);
+    console.log(response.data.choices[0].message.content);
 
-//     res.json(response.data.choices[0].message.content);
-//   } catch (error) {
-//     console.error('Error generating content:', error.response ? error.response.data : error.message);
-//     res.status(500).json({ error: 'Failed to generate email content. Please check API key and model.' });
-//   }
-// });
+    res.json(response.data.choices[0].message.content);
+  } catch (error) {
+    console.error('Error generating content:', error.response ? error.response.data : error.message);
+    res.status(500).json({ error: 'Failed to generate email content. Please check API key and model.' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

@@ -1,0 +1,8 @@
+.color_pallete {
+    display: flex;
+
+    &__option {
+        width: 10rem;
+        height: 10rem;
+    }
+}
