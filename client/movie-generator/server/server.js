@@ -16,11 +16,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dataPath = path.join(__dirname, 'data', 'data.json');
 
-// Directly set the OpenAI API key
-const openaiApiKey = 'sk-proj-HrcapYN5ATdUGYv29sRUT3BlbkFJcBbrjOIGfrKGWb3xJdmn';
+const openaiApiKey = 'sk-None-Z5FZmuUO6sSe9BSOq16AT3BlbkFJG61GLYLzD6urbvQnzFMy';
 const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
-
-console.log("API key:", openaiApiKey);
 
 app.get('/generator/:id', async (req, res) => {
     const { id }= req.params;
@@ -39,10 +36,8 @@ app.get('/generator/:id', async (req, res) => {
     })
 });
 
-// Example route using OpenAI
 app.post('/generator/:id', async (req, res) => {
     const prompt = JSON.stringify(req.body);
-    // console.log(prompt);
 
   try {
     const response = await axios.post(openaiApiUrl, {
@@ -55,8 +50,6 @@ app.post('/generator/:id', async (req, res) => {
         'Content-Type': 'application/json',
       },
     });
-
-    console.log(response.data.choices[0].message.content);
 
     res.json(response.data.choices[0].message.content);
   } catch (error) {

@@ -13,6 +13,5 @@ export default function Header() {
                 <p>98'</p>
             </div>
         </header>
-
     );
 }

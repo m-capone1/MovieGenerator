@@ -6,75 +6,120 @@ import ColorPallete from '../../components/ColorPallete/ColorPallete';
 export default function GeneratorPage() {
     const [colors, setColors] = useState([]);
     const [isLoadingList, setLoadingList] = useState(true);
+    const [song, setSong] = useState("");
+    const [recipe, setRecipe] = useState("");
+    const [movie, setMovie] = useState("");
     const { mood } = useParams();
 
-  let baseUrl = "http://localhost:8080/generator"
+    let baseUrl = "http://localhost:8080/generator";
+    
     useEffect(() => {
-        const fetchColors = async() => {
+        const fetchColors = async () => {
             try {
                 const response = await axios.get(`${baseUrl}/${mood}`);
                 setLoadingList(false);
 
-                if(response) {
+                if (response) {
                     setColors(response.data);
                 }
-            } catch(e) {
+            } catch (e) {
                 console.log("Error fetching data", e);
             }
-        }
+        };
         fetchColors();
+    }, [mood]);
 
-        const fetchSong = async() => {
+    useEffect(() => {
+        const fetchSong = async () => {
             try {
-                const response = await axios.post(`${baseUrl}/${mood}`, {prompt: "Take these hex colors and recommend a song that matches the vibe #F3FEB8, #FFDE4D, #FFB22C, #FF4C4C"})
-                console.log(response);
-                // setLoadingList(false);
+                if (colors) {
+                    let stringCols = colors.join();
+                    
+                    if (stringCols) {
+                        const response = await axios.post(`${baseUrl}/${mood}`, { prompt: `Take these hex colors and recommend a song that matches the vibe: ${stringCols}. Don't mention the hex values of the colors in the response. Make the response fun and lighthearted.` });
 
-                // if(response) {
-                //     setColors(response.data);
-                // }
-            } catch(e) {
+                        if (response) {
+                            setSong(response.data);
+                        }
+                    }
+                }
+            } catch (e) {
                 console.log("Error fetching data", e);
             }
-        }
+        };
         fetchSong();
 
-    }, []);
+        const fetchMovie = async () => {
+            try {
+                if (colors) {
+                    let stringCols = colors.join();
 
-    
-    //if data is still loading, display loading page
-    if(isLoadingList) {
-        return <div>Loading page ...</div>
-    };
+                    if (stringCols) {
+                        const response = await axios.post(`${baseUrl}/${mood}`, { prompt: `Take these hex colors and recommend a movie that matches the vibe: ${stringCols}. Don't mention the hex values of the colors in the response. Make the response fun and lighthearted.` });
 
-  return (
-    <section className='main'>
-        <div>
-            <h1>Generator Page</h1>
-            <p>Selected mood: {mood}</p>
-        </div>
-        <div>
-            <h2>Your personalized color pallette</h2>
-            <ColorPallete colors={colors}/>
-        </div>
-        <div>
-            <h2>Movie Recommendations:</h2>
+                        if (response) {
+                            setMovie(response.data);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log("Error fetching data", e);
+            }
+        };
+        fetchMovie();
+
+        const fetchRecipe = async () => {
+            try {
+                if (colors) {
+                    let stringCols = colors.join();
+
+                    if (stringCols) {
+                        const response = await axios.post(`${baseUrl}/${mood}`, { prompt: `Take these hex colors and recommend a recipe that matches the vibe: ${stringCols}. Don't mention the hex values of the colors in the response. Make the response fun and lighthearted.` });
+                        if (response) {
+                            setRecipe(response.data);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log("Error fetching data", e);
+            }
+        };
+        fetchRecipe();
+    }, [colors, mood, baseUrl]);
+
+    // if data is still loading, display loading page
+    if (isLoadingList) {
+        return <div>Loading page ...</div>;
+    }
+
+    return (
+        <section className='main'>
             <div>
-                
+                <h1>Generator Page</h1>
+                <p>Selected mood: {mood}</p>
             </div>
-        </div>
-        <div>
-            <h2>Song Recommendations:</h2>
             <div>
-                
+                <h2>Your personalized color pallette</h2>
+                <ColorPallete colors={colors} />
             </div>
-        </div>
-        <div>
-            <h2>Recipe Recommendations:</h2>
             <div>
-                
+                <h2>Song Recommendations:</h2>
+                <div>
+                    {song}
+                </div>
             </div>
-        </div>
-    </section>
-  );
+            <div>
+                <h2>Movie Recommendations:</h2>
+                <div>
+                    {movie}
+                </div>
+            </div>
+            <div>
+                <h2>Recipe Recommendations:</h2>
+                <div>
+                    {recipe}
+                </div>
+            </div>
+        </section>
+    );
 }
