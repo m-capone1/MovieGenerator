@@ -6,11 +6,6 @@ import Header from './components/Header/Header';
 
 function App() {
 
-  const handleClick = (mood) => {
-    console.log(`${mood.name} was clicked`);
-    navigate('/generator');
-  };
-
   return (
     <BrowserRouter>
       <Header />
