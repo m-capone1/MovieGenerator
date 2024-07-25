@@ -1,4 +1,5 @@
-{"happy": ["#F3FEB8", "#FFDE4D", "#FFB22C", "#FF4C4C" ],
+{
+"happy": ["#F3FEB8", "#FFDE4D", "#FFB22C", "#FF4C4C" ],
 "carefree": ["#36BA98","#E9C46A", "#F4A261", "#E76F51"],
 "meh": ["#F8EDE3", "#DFD3C3", "#D0B8A8", "#8D493A"],
 "bees": ["#FFF7D4","#FFD95A","#C07F00","#4C3D3D"],

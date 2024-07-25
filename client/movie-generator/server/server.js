@@ -20,6 +20,8 @@ const dataPath = path.join(__dirname, 'data', 'data.json');
 const openaiApiKey = 'sk-proj-HrcapYN5ATdUGYv29sRUT3BlbkFJcBbrjOIGfrKGWb3xJdmn';
 const openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
 
+console.log("API key:", openaiApiKey);
+
 app.get('/generator/:id', async (req, res) => {
     const { id }= req.params;
     
@@ -33,14 +35,14 @@ app.get('/generator/:id', async (req, res) => {
         const jsonData = JSON.parse(data);
         const mood =jsonData[id];
         const jsonString = JSON.stringify(mood);
-        console.log(jsonString);
         res.send(jsonString);
     })
 });
 
 // Example route using OpenAI
 app.post('/generator/:id', async (req, res) => {
-    const { prompt } = req.body;
+    const prompt = JSON.stringify(req.body);
+    // console.log(prompt);
 
   try {
     const response = await axios.post(openaiApiUrl, {
@@ -59,7 +61,7 @@ app.post('/generator/:id', async (req, res) => {
     res.json(response.data.choices[0].message.content);
   } catch (error) {
     console.error('Error generating content:', error.response ? error.response.data : error.message);
-    res.status(500).json({ error: 'Failed to generate email content. Please check API key and model.' });
+    res.status(500).json({ error: 'Failed to generate content. Please check API key and model.' });
   }
 });
 

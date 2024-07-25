@@ -7,14 +7,12 @@ export default function GeneratorPage() {
     const [colors, setColors] = useState([]);
     const [isLoadingList, setLoadingList] = useState(true);
     const { mood } = useParams();
-    console.log(mood);
 
   let baseUrl = "http://localhost:8080/generator"
     useEffect(() => {
         const fetchColors = async() => {
             try {
-                const response = await axios.get(`${baseUrl}/${mood}`)
-                console.log(response.data);
+                const response = await axios.get(`${baseUrl}/${mood}`);
                 setLoadingList(false);
 
                 if(response) {
@@ -25,9 +23,23 @@ export default function GeneratorPage() {
             }
         }
         fetchColors();
+
+        const fetchSong = async() => {
+            try {
+                const response = await axios.post(`${baseUrl}/${mood}`, {prompt: "Take these hex colors and recommend a song that matches the vibe #F3FEB8, #FFDE4D, #FFB22C, #FF4C4C"})
+                console.log(response);
+                // setLoadingList(false);
+
+                // if(response) {
+                //     setColors(response.data);
+                // }
+            } catch(e) {
+                console.log("Error fetching data", e);
+            }
+        }
+        fetchSong();
+
     }, []);
-    
-    console.log(colors);
 
     
     //if data is still loading, display loading page
@@ -52,7 +64,7 @@ export default function GeneratorPage() {
             </div>
         </div>
         <div>
-            <h2>Playlist Recommendations:</h2>
+            <h2>Song Recommendations:</h2>
             <div>
                 
             </div>

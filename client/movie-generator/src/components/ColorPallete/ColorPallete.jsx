@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import './ColorPallete.scss';
 
 export default function ColorPallete({colors}) {
-    console.log(colors);
     return (
         <section>
             <div className="color-pallete">

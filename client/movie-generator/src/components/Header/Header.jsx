@@ -4,7 +4,7 @@ import Popcorn from '../../assets/images/popcorn.png';
 import { Link } from 'react-router-dom';
 
 
-export default function GeneratorPage() {
+export default function Header() {
     return (
         <header className='header'>
             <Link to ='/'><img className='header__logo' src={Logo} alt='logo'></img></Link>
