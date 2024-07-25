@@ -1,7 +1,12 @@
+import { useParams } from 'react-router-dom';
+
 export default function GeneratorPage() {
-    return;
+  const { mood } = useParams();
 
-    <div className="main">
-
+  return (
+    <div>
+      <h1>Generator Page</h1>
+      <p>Mood: {mood}</p>
     </div>
+  );
 }
